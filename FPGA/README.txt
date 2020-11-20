@@ -1,3 +1,25 @@
+---------------------------------------------------------------------------------
+DE10-Lite is the Top level for the TT8BG by Robin Jacobs (elholandes44@gmail.com)
+
+Current state: 
+- a mess
+
+what works: 
+- It boots
+- external SD2IEC interface
+- US layout USB keyboard 
+
+what kind of works:
+- scandoubler to convert 15Khz video out into VGA 640x480@60Hz
+Only works with NTSC setting
+Some artifacts in the midle of the screen
+- sound, PWM DAC needs work but it produces sound
+
+what doesn't work:
+- OSD can't get it to work, maybe it's because of the scan converter.
+- Internal SD with fat32 support
+  
+
 -------------------------------------------------------------------------------------------------------
 -- DE10 lite Top level for FPGA64_027 by Dar (darfpga@aol.fr) 15-Mai-2019
 -- http://darfpga.blogspot.fr
