@@ -1,0 +1,284 @@
+
+State Machine - |c64_de10_lite|CtrlModule:control_module|io_ps2_com:mykeyboard|comState
+Name comState.stateWaitHighRecv comState.stateRecvBit comState.stateWaitAck comState.stateClockAndDataLow comState.stateWaitClockHigh comState.stateWaitClockLow comState.stateWait100 comState.stateIdle 
+comState.stateIdle 0 0 0 0 0 0 0 0 
+comState.stateWait100 0 0 0 0 0 0 1 1 
+comState.stateWaitClockLow 0 0 0 0 0 1 0 1 
+comState.stateWaitClockHigh 0 0 0 0 1 0 0 1 
+comState.stateClockAndDataLow 0 0 0 1 0 0 0 1 
+comState.stateWaitAck 0 0 1 0 0 0 0 1 
+comState.stateRecvBit 0 1 0 0 0 0 0 1 
+comState.stateWaitHighRecv 1 0 0 0 0 0 0 1 
+
+State Machine - |c64_de10_lite|CtrlModule:control_module|zpu_core_flex:zpu|decodedOpcode
+Name decodedOpcode.Decoded_Shift decodedOpcode.Decoded_Call decodedOpcode.Decoded_EqBranch decodedOpcode.Decoded_EqNeq decodedOpcode.Decoded_Comparison decodedOpcode.Decoded_Sub decodedOpcode.Decoded_Mult decodedOpcode.Decoded_Interrupt decodedOpcode.Decoded_PopSP decodedOpcode.Decoded_StoreBH decodedOpcode.Decoded_Store decodedOpcode.Decoded_Flip decodedOpcode.Decoded_Xor decodedOpcode.Decoded_Not decodedOpcode.Decoded_LoadBH decodedOpcode.Decoded_Load decodedOpcode.Decoded_And decodedOpcode.Decoded_Or decodedOpcode.Decoded_Add decodedOpcode.Decoded_PopPC decodedOpcode.Decoded_PushSP decodedOpcode.Decoded_Break decodedOpcode.Decoded_Emulate decodedOpcode.Decoded_AddSP decodedOpcode.Decoded_StoreSP decodedOpcode.Decoded_LoadSP decodedOpcode.Decoded_ImShift decodedOpcode.Decoded_Im decodedOpcode.Decoded_Nop 
+decodedOpcode.Decoded_Nop 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+decodedOpcode.Decoded_Im 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+decodedOpcode.Decoded_ImShift 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+decodedOpcode.Decoded_LoadSP 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+decodedOpcode.Decoded_StoreSP 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+decodedOpcode.Decoded_AddSP 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+decodedOpcode.Decoded_Emulate 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+decodedOpcode.Decoded_Break 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_PushSP 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_PopPC 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_Add 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_Or 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_And 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_Load 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_LoadBH 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_Not 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_Xor 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_Flip 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_Store 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_StoreBH 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_PopSP 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_Interrupt 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_Mult 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_Sub 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_Comparison 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_EqNeq 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_EqBranch 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_Call 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+decodedOpcode.Decoded_Shift 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |c64_de10_lite|CtrlModule:control_module|zpu_core_flex:zpu|state
+Name state.State_Shift state.State_IncSP state.State_Sub state.State_EqNeq state.State_Comparison state.State_Mult state.State_Interrupt state.State_Fetch state.State_Decode state.State_StoreAndDecode state.State_ReadIODone state.State_AddSP2 state.State_AddSP state.State_FetchNext state.State_Load state.State_WriteIOBH state.State_WriteIO state.State_ReadIOBH state.State_ReadIO state.State_Store state.State_Xor state.State_And state.State_Or state.State_Add state.State_StoreToStack state.State_Execute state.State_WriteIODone state.State_Resync 
+state.State_Resync 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.State_WriteIODone 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.State_Execute 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.State_StoreToStack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.State_Add 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.State_Or 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.State_And 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.State_Xor 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.State_Store 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.State_ReadIO 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.State_ReadIOBH 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.State_WriteIO 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.State_WriteIOBH 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.State_Load 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.State_FetchNext 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.State_AddSP 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.State_AddSP2 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.State_ReadIODone 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.State_StoreAndDecode 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.State_Decode 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.State_Fetch 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.State_Interrupt 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.State_Mult 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.State_Comparison 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.State_EqNeq 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.State_Sub 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.State_IncSP 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.State_Shift 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |c64_de10_lite|c1541_sd:c1541_sd|c1541_logic:c1541|T65:cpu_inst|Set_Addr_To_r
+Name Set_Addr_To_r.Set_Addr_To_BA Set_Addr_To_r.Set_Addr_To_ZPG Set_Addr_To_r.Set_Addr_To_SP Set_Addr_To_r.Set_Addr_To_PBR 
+Set_Addr_To_r.Set_Addr_To_PBR 0 0 0 0 
+Set_Addr_To_r.Set_Addr_To_SP 0 0 1 1 
+Set_Addr_To_r.Set_Addr_To_ZPG 0 1 0 1 
+Set_Addr_To_r.Set_Addr_To_BA 1 0 0 1 
+
+State Machine - |c64_de10_lite|c1541_sd:c1541_sd|c1541_logic:c1541|T65:cpu_inst|Write_Data_r
+Name Write_Data_r.Write_Data_DONTCARE Write_Data_r.Write_Data_YB Write_Data_r.Write_Data_XB Write_Data_r.Write_Data_AXB Write_Data_r.Write_Data_AX Write_Data_r.Write_Data_PCH Write_Data_r.Write_Data_PCL Write_Data_r.Write_Data_P Write_Data_r.Write_Data_S Write_Data_r.Write_Data_Y Write_Data_r.Write_Data_X Write_Data_r.Write_Data_ABC Write_Data_r.Write_Data_DL 
+Write_Data_r.Write_Data_DL 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Write_Data_r.Write_Data_ABC 0 0 0 0 0 0 0 0 0 0 0 1 1 
+Write_Data_r.Write_Data_X 0 0 0 0 0 0 0 0 0 0 1 0 1 
+Write_Data_r.Write_Data_Y 0 0 0 0 0 0 0 0 0 1 0 0 1 
+Write_Data_r.Write_Data_S 0 0 0 0 0 0 0 0 1 0 0 0 1 
+Write_Data_r.Write_Data_P 0 0 0 0 0 0 0 1 0 0 0 0 1 
+Write_Data_r.Write_Data_PCL 0 0 0 0 0 0 1 0 0 0 0 0 1 
+Write_Data_r.Write_Data_PCH 0 0 0 0 0 1 0 0 0 0 0 0 1 
+Write_Data_r.Write_Data_AX 0 0 0 0 1 0 0 0 0 0 0 0 1 
+Write_Data_r.Write_Data_AXB 0 0 0 1 0 0 0 0 0 0 0 0 1 
+Write_Data_r.Write_Data_XB 0 0 1 0 0 0 0 0 0 0 0 0 1 
+Write_Data_r.Write_Data_YB 0 1 0 0 0 0 0 0 0 0 0 0 1 
+Write_Data_r.Write_Data_DONTCARE 1 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |c64_de10_lite|c1541_sd:c1541_sd|c1541_logic:c1541|T65:cpu_inst|ALU_Op_r
+Name ALU_Op_r.ALU_OP_XAA ALU_Op_r.ALU_OP_SAX ALU_Op_r.ALU_OP_ANC ALU_Op_r.ALU_OP_ARR ALU_Op_r.ALU_OP_INC ALU_Op_r.ALU_OP_DEC ALU_Op_r.ALU_OP_OR ALU_Op_r.ALU_OP_ROR ALU_Op_r.ALU_OP_LSR ALU_Op_r.ALU_OP_ROL ALU_Op_r.ALU_OP_ASL ALU_Op_r.ALU_OP_SBC ALU_Op_r.ALU_OP_CMP ALU_Op_r.ALU_OP_EQ2 ALU_Op_r.ALU_OP_EQ1 ALU_Op_r.ALU_OP_ADC ALU_Op_r.ALU_OP_EOR ALU_Op_r.ALU_OP_AND ALU_Op_r.ALU_OP_BIT 
+ALU_Op_r.ALU_OP_BIT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+ALU_Op_r.ALU_OP_AND 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+ALU_Op_r.ALU_OP_EOR 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+ALU_Op_r.ALU_OP_ADC 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+ALU_Op_r.ALU_OP_EQ1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+ALU_Op_r.ALU_OP_EQ2 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+ALU_Op_r.ALU_OP_CMP 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_SBC 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_ASL 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_ROL 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_LSR 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_ROR 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_OR 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_DEC 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_INC 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_ARR 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_ANC 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_SAX 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_XAA 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |c64_de10_lite|fpga64_sid_iec:fpga64|sysCycle
+Name sysCycle.CYCLE_CPUF sysCycle.CYCLE_CPUE sysCycle.CYCLE_CPUD sysCycle.CYCLE_CPUC sysCycle.CYCLE_CPUB sysCycle.CYCLE_CPUA sysCycle.CYCLE_CPU9 sysCycle.CYCLE_CPU8 sysCycle.CYCLE_CPUQ sysCycle.CYCLE_CPUP sysCycle.CYCLE_CPU7 sysCycle.CYCLE_CPU6 sysCycle.CYCLE_CPU5 sysCycle.CYCLE_CPU4 sysCycle.CYCLE_CPU3 sysCycle.CYCLE_CPU2 sysCycle.CYCLE_CPU1 sysCycle.CYCLE_CPU0 sysCycle.CYCLE_VIC3 sysCycle.CYCLE_VIC2 sysCycle.CYCLE_VIC1 sysCycle.CYCLE_VIC0 sysCycle.CYCLE_IEC3 sysCycle.CYCLE_IEC2 sysCycle.CYCLE_IEC1 sysCycle.CYCLE_IEC0 sysCycle.CYCLE_IDLE8 sysCycle.CYCLE_IDLE7 sysCycle.CYCLE_IDLE6 sysCycle.CYCLE_IDLE5 sysCycle.CYCLE_IDLE4 sysCycle.CYCLE_IDLE3 sysCycle.CYCLE_IDLE2 sysCycle.CYCLE_IDLE1 sysCycle.CYCLE_IDLE0 
+sysCycle.CYCLE_IDLE0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+sysCycle.CYCLE_IDLE1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+sysCycle.CYCLE_IDLE2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+sysCycle.CYCLE_IDLE3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+sysCycle.CYCLE_IDLE4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+sysCycle.CYCLE_IDLE5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+sysCycle.CYCLE_IDLE6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+sysCycle.CYCLE_IDLE7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+sysCycle.CYCLE_IDLE8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_IEC0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_IEC1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_IEC2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_IEC3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_VIC0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_VIC1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_VIC2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_VIC3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPU0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPU1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPU2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPU3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPU4 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPU5 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPU6 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPU7 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPUP 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPUQ 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPU8 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPU9 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPUA 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPUB 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPUC 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPUD 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPUE 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+sysCycle.CYCLE_CPUF 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |c64_de10_lite|fpga64_sid_iec:fpga64|cpu_6510:cpu|T65:cpu|Set_Addr_To_r
+Name Set_Addr_To_r.Set_Addr_To_BA Set_Addr_To_r.Set_Addr_To_ZPG Set_Addr_To_r.Set_Addr_To_SP Set_Addr_To_r.Set_Addr_To_PBR 
+Set_Addr_To_r.Set_Addr_To_PBR 0 0 0 0 
+Set_Addr_To_r.Set_Addr_To_SP 0 0 1 1 
+Set_Addr_To_r.Set_Addr_To_ZPG 0 1 0 1 
+Set_Addr_To_r.Set_Addr_To_BA 1 0 0 1 
+
+State Machine - |c64_de10_lite|fpga64_sid_iec:fpga64|cpu_6510:cpu|T65:cpu|Write_Data_r
+Name Write_Data_r.Write_Data_DONTCARE Write_Data_r.Write_Data_YB Write_Data_r.Write_Data_XB Write_Data_r.Write_Data_AXB Write_Data_r.Write_Data_AX Write_Data_r.Write_Data_PCH Write_Data_r.Write_Data_PCL Write_Data_r.Write_Data_P Write_Data_r.Write_Data_S Write_Data_r.Write_Data_Y Write_Data_r.Write_Data_X Write_Data_r.Write_Data_ABC Write_Data_r.Write_Data_DL 
+Write_Data_r.Write_Data_DL 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Write_Data_r.Write_Data_ABC 0 0 0 0 0 0 0 0 0 0 0 1 1 
+Write_Data_r.Write_Data_X 0 0 0 0 0 0 0 0 0 0 1 0 1 
+Write_Data_r.Write_Data_Y 0 0 0 0 0 0 0 0 0 1 0 0 1 
+Write_Data_r.Write_Data_S 0 0 0 0 0 0 0 0 1 0 0 0 1 
+Write_Data_r.Write_Data_P 0 0 0 0 0 0 0 1 0 0 0 0 1 
+Write_Data_r.Write_Data_PCL 0 0 0 0 0 0 1 0 0 0 0 0 1 
+Write_Data_r.Write_Data_PCH 0 0 0 0 0 1 0 0 0 0 0 0 1 
+Write_Data_r.Write_Data_AX 0 0 0 0 1 0 0 0 0 0 0 0 1 
+Write_Data_r.Write_Data_AXB 0 0 0 1 0 0 0 0 0 0 0 0 1 
+Write_Data_r.Write_Data_XB 0 0 1 0 0 0 0 0 0 0 0 0 1 
+Write_Data_r.Write_Data_YB 0 1 0 0 0 0 0 0 0 0 0 0 1 
+Write_Data_r.Write_Data_DONTCARE 1 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |c64_de10_lite|fpga64_sid_iec:fpga64|cpu_6510:cpu|T65:cpu|ALU_Op_r
+Name ALU_Op_r.ALU_OP_XAA ALU_Op_r.ALU_OP_SAX ALU_Op_r.ALU_OP_ANC ALU_Op_r.ALU_OP_ARR ALU_Op_r.ALU_OP_INC ALU_Op_r.ALU_OP_DEC ALU_Op_r.ALU_OP_OR ALU_Op_r.ALU_OP_ROR ALU_Op_r.ALU_OP_LSR ALU_Op_r.ALU_OP_ROL ALU_Op_r.ALU_OP_ASL ALU_Op_r.ALU_OP_SBC ALU_Op_r.ALU_OP_CMP ALU_Op_r.ALU_OP_EQ2 ALU_Op_r.ALU_OP_EQ1 ALU_Op_r.ALU_OP_ADC ALU_Op_r.ALU_OP_EOR ALU_Op_r.ALU_OP_AND ALU_Op_r.ALU_OP_BIT 
+ALU_Op_r.ALU_OP_BIT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+ALU_Op_r.ALU_OP_AND 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+ALU_Op_r.ALU_OP_EOR 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+ALU_Op_r.ALU_OP_ADC 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+ALU_Op_r.ALU_OP_EQ1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+ALU_Op_r.ALU_OP_EQ2 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+ALU_Op_r.ALU_OP_CMP 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_SBC 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_ASL 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_ROL 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_LSR 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_ROR 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_OR 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_DEC 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_INC 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_ARR 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_ANC 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_SAX 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+ALU_Op_r.ALU_OP_XAA 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |c64_de10_lite|fpga64_sid_iec:fpga64|sid8580:sid_8580_r|sid_filters:filters|state
+Name state.1011 state.1010 state.1001 state.1000 state.0111 state.0110 state.0101 state.0100 state.0011 state.0010 state.0001 state.0000 
+state.0000 0 0 0 0 0 0 0 0 0 0 0 0 
+state.0001 0 0 0 0 0 0 0 0 0 0 1 1 
+state.0010 0 0 0 0 0 0 0 0 0 1 0 1 
+state.0011 0 0 0 0 0 0 0 0 1 0 0 1 
+state.0100 0 0 0 0 0 0 0 1 0 0 0 1 
+state.0101 0 0 0 0 0 0 1 0 0 0 0 1 
+state.0110 0 0 0 0 0 1 0 0 0 0 0 1 
+state.0111 0 0 0 0 1 0 0 0 0 0 0 1 
+state.1000 0 0 0 1 0 0 0 0 0 0 0 1 
+state.1001 0 0 1 0 0 0 0 0 0 0 0 1 
+state.1010 0 1 0 0 0 0 0 0 0 0 0 1 
+state.1011 1 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |c64_de10_lite|fpga64_sid_iec:fpga64|sid8580:sid_8580_r|sid_voice:v3|sid_envelope:adsr|state
+Name state.00 state.10 state.01 
+state.10 0 0 0 
+state.01 0 1 1 
+state.00 1 1 0 
+
+State Machine - |c64_de10_lite|fpga64_sid_iec:fpga64|sid8580:sid_8580_r|sid_voice:v2|sid_envelope:adsr|state
+Name state.00 state.10 state.01 
+state.10 0 0 0 
+state.01 0 1 1 
+state.00 1 1 0 
+
+State Machine - |c64_de10_lite|fpga64_sid_iec:fpga64|sid8580:sid_8580_r|sid_voice:v1|sid_envelope:adsr|state
+Name state.00 state.10 state.01 
+state.10 0 0 0 
+state.01 0 1 1 
+state.00 1 1 0 
+
+State Machine - |c64_de10_lite|fpga64_sid_iec:fpga64|sid8580:sid_8580_l|sid_filters:filters|state
+Name state.1011 state.1010 state.1001 state.1000 state.0111 state.0110 state.0101 state.0100 state.0011 state.0010 state.0001 state.0000 
+state.0000 0 0 0 0 0 0 0 0 0 0 0 0 
+state.0001 0 0 0 0 0 0 0 0 0 0 1 1 
+state.0010 0 0 0 0 0 0 0 0 0 1 0 1 
+state.0011 0 0 0 0 0 0 0 0 1 0 0 1 
+state.0100 0 0 0 0 0 0 0 1 0 0 0 1 
+state.0101 0 0 0 0 0 0 1 0 0 0 0 1 
+state.0110 0 0 0 0 0 1 0 0 0 0 0 1 
+state.0111 0 0 0 0 1 0 0 0 0 0 0 1 
+state.1000 0 0 0 1 0 0 0 0 0 0 0 1 
+state.1001 0 0 1 0 0 0 0 0 0 0 0 1 
+state.1010 0 1 0 0 0 0 0 0 0 0 0 1 
+state.1011 1 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |c64_de10_lite|fpga64_sid_iec:fpga64|sid8580:sid_8580_l|sid_voice:v3|sid_envelope:adsr|state
+Name state.00 state.10 state.01 
+state.10 0 0 0 
+state.01 0 1 1 
+state.00 1 1 0 
+
+State Machine - |c64_de10_lite|fpga64_sid_iec:fpga64|sid8580:sid_8580_l|sid_voice:v2|sid_envelope:adsr|state
+Name state.00 state.10 state.01 
+state.10 0 0 0 
+state.01 0 1 1 
+state.00 1 1 0 
+
+State Machine - |c64_de10_lite|fpga64_sid_iec:fpga64|sid8580:sid_8580_l|sid_voice:v1|sid_envelope:adsr|state
+Name state.00 state.10 state.01 
+state.10 0 0 0 
+state.01 0 1 1 
+state.00 1 1 0 
+
+State Machine - |c64_de10_lite|fpga64_sid_iec:fpga64|video_vicii_656x:vic|vicCycle
+Name vicCycle.cycleSpriteB vicCycle.cycleSpriteA vicCycle.cycleSpriteBa3 vicCycle.cycleSpriteBa2 vicCycle.cycleSpriteBa1 vicCycle.cycleCalcSprites vicCycle.cycleChar vicCycle.cycleIdle1 vicCycle.cycleRefresh5 vicCycle.cycleRefresh4 vicCycle.cycleRefresh3 vicCycle.cycleRefresh2 vicCycle.cycleRefresh1 
+vicCycle.cycleRefresh1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+vicCycle.cycleRefresh2 0 0 0 0 0 0 0 0 0 0 0 1 1 
+vicCycle.cycleRefresh3 0 0 0 0 0 0 0 0 0 0 1 0 1 
+vicCycle.cycleRefresh4 0 0 0 0 0 0 0 0 0 1 0 0 1 
+vicCycle.cycleRefresh5 0 0 0 0 0 0 0 0 1 0 0 0 1 
+vicCycle.cycleIdle1 0 0 0 0 0 0 0 1 0 0 0 0 1 
+vicCycle.cycleChar 0 0 0 0 0 0 1 0 0 0 0 0 1 
+vicCycle.cycleCalcSprites 0 0 0 0 0 1 0 0 0 0 0 0 1 
+vicCycle.cycleSpriteBa1 0 0 0 0 1 0 0 0 0 0 0 0 1 
+vicCycle.cycleSpriteBa2 0 0 0 1 0 0 0 0 0 0 0 0 1 
+vicCycle.cycleSpriteBa3 0 0 1 0 0 0 0 0 0 0 0 0 1 
+vicCycle.cycleSpriteA 0 1 0 0 0 0 0 0 0 0 0 0 1 
+vicCycle.cycleSpriteB 1 0 0 0 0 0 0 0 0 0 0 0 1 

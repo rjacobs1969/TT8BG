@@ -1,0 +1,22 @@
++----------------------------------------------------------------------------------+
+; Fitter Summary                                                                   ;
++------------------------------------+---------------------------------------------+
+; Fitter Status                      ; Successful - Wed May 15 14:53:18 2019       ;
+; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                      ; c64_de10_lite                               ;
+; Top-level Entity Name              ; c64_de10_lite                               ;
+; Family                             ; MAX 10                                      ;
+; Device                             ; 10M50DAF484C7G                              ;
+; Timing Models                      ; Final                                       ;
+; Total logic elements               ; 19,263 / 49,760 ( 39 % )                    ;
+;     Total combinational functions  ; 18,307 / 49,760 ( 37 % )                    ;
+;     Dedicated logic registers      ; 6,600 / 49,760 ( 13 % )                     ;
+; Total registers                    ; 6600                                        ;
+; Total pins                         ; 176 / 360 ( 49 % )                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 702,676 / 1,677,312 ( 42 % )                ;
+; Embedded Multiplier 9-bit elements ; 44 / 288 ( 15 % )                           ;
+; Total PLLs                         ; 1 / 4 ( 25 % )                              ;
+; UFM blocks                         ; 0 / 1 ( 0 % )                               ;
+; ADC blocks                         ; 0 / 2 ( 0 % )                               ;
++------------------------------------+---------------------------------------------+

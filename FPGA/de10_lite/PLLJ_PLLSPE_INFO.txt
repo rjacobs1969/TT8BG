@@ -1,0 +1,5 @@
+PLL_Name	max_10_pll50_to_32_and_18:clk_32_18|altpll:altpll_component|max_10_pll50_to_32_and_18_altpll:auto_generated|pll1
+PLLJITTER	55
+PLLSPEmax	84
+PLLSPEmin	-53
+
