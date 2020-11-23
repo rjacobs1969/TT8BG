@@ -165,24 +165,13 @@ architecture struct of c64_de10_lite is
 --	alias sram_oe_n : std_logic is gpio(23);
 --	alias sram_dq   : std_logic_vector is gpio(31 downto 24);
 --
-
--- RJ comment next 6 lines
-	alias ext_iec_atn_i  : std_logic is gpio(32);
-	alias ext_iec_clk_o  : std_logic is gpio(33);
-	alias ext_iec_data_o : std_logic is gpio(34);
-	alias ext_iec_atn_o  : std_logic is gpio(35);
-	alias ext_iec_data_i : std_logic is gpio(2);
-	alias ext_iec_clk_i  : std_logic is gpio(0);
+--	alias ext_iec_atn_i  : std_logic is gpio(32);
+--	alias ext_iec_clk_o  : std_logic is gpio(33);
+--	alias ext_iec_data_o : std_logic is gpio(34);
+--	alias ext_iec_atn_o  : std_logic is gpio(35);
+--	alias ext_iec_data_i : std_logic is gpio(2);
+--	alias ext_iec_clk_i  : std_logic is gpio(0);
 	
-	--RJ make exterior
---	alias c64_iec_atn_i  : std_logic is gpio(32);
---	alias c64_iec_clk_o  : std_logic is gpio(33);
---	alias c64_iec_data_o : std_logic is gpio(34);
---	alias c64_iec_atn_o  : std_logic is gpio(35);
---	alias c64_iec_data_i : std_logic is gpio(2);
---	alias c64_iec_clk_i  : std_logic is gpio(0);
-
--- RJ comment next 6 lines	
 	signal c64_iec_atn_i  : std_logic;
 	signal c64_iec_clk_o  : std_logic;
 	signal c64_iec_data_o : std_logic;
@@ -224,8 +213,7 @@ architecture struct of c64_de10_lite is
 
 	signal audio_data_l : std_logic_vector(17 downto 0);
 	signal audio_data_r : std_logic_vector(17 downto 0);
-	signal pwm_accumulator_l : std_logic_vector(8 downto 0);
-	signal pwm_accumulator_r : std_logic_vector(8 downto 0);
+	signal pwm_accumulator : std_logic_vector(8 downto 0);
 
 	signal dbg_track_dbl    : std_logic_vector(6 downto 0);
 	signal dbg_sd_busy      : std_logic;
@@ -314,7 +302,7 @@ architecture struct of c64_de10_lite is
 --	signal hex_t0,hex_t1,hex_t2,hex_t3,hex_t4,hex_t5 : std_logic_vector(7 downto 0);
 --	signal hex_d0,hex_d1,hex_d2,hex_d3,hex_d4,hex_d5 : std_logic_vector(7 downto 0);
 --	signal tap_counter : std_logic_vector(31 downto 0);
-	
+--	
 component sdram is port 
 (
    -- interface to the MT48LC16M16 chip
@@ -349,12 +337,8 @@ arduino_io(5) <= 'Z';
 arduino_io(9 downto 7) <= (others => 'Z');
 --arduino_io(15 downto 14) <= (others => 'Z');
 
---RJ 
-tv15Khz_mode <= sw(0);
--- 
-ntsc_init_mode <= sw(1);
---tv15Khz_mode <= '0';
---ntsc_init_mode <= '1'; --sw(1);
+tv15Khz_mode <= sw(0);--'1';   --
+ntsc_init_mode <= sw(1);--'0'; --
 	
 clk_32_18 : entity work.max_10_pll50_to_32_and_18
 port map(
@@ -427,7 +411,7 @@ fpga64 : entity work.fpga64_sid_iec
 		ramDataIn => c64_ram_di,  --c64_data_in_int,
 		ram_ce_n  => c64_ram_ce_n,
 		ram_we_n  => c64_ram_we_n,
-		tv15Khz_mode => tv15Khz_mode,
+		--tv15Khz_mode => tv15Khz_mode,
 		ntscInitMode => ntsc_init_mode,
 		hsync => hsync,
 		vsync => vsync,
@@ -495,24 +479,19 @@ fpga64 : entity work.fpga64_sid_iec
 	);
 
 
--- RJ ORG iec wiring (external IEC commented)
---c64_iec_atn_i  <= not ((not c64_iec_atn_o)  and (not c1541_iec_atn_o) ); --or (ext_iec_atn_i  );
---c64_iec_data_i <= not ((not c64_iec_data_o) and (not c1541_iec_data_o)); --or (ext_iec_data_i );
---c64_iec_clk_i  <= not ((not c64_iec_clk_o)  and (not c1541_iec_clk_o) ); --or ext_iec_clk_i  );
-	
--- iec wiring (external IEC commented) RJ Changed logic
-c64_iec_atn_i  <= not ((not c64_iec_atn_o)  and (not c1541_iec_atn_o ) and (ext_iec_atn_i  ));
-c64_iec_data_i <= not ((not c64_iec_data_o) and (not c1541_iec_data_o) and (ext_iec_data_i ));
-c64_iec_clk_i  <= not ((not c64_iec_clk_o)  and (not c1541_iec_clk_o ) and (ext_iec_clk_i  ));
+-- iec wiring (external IEC commented)
+c64_iec_atn_i  <= not ((not c64_iec_atn_o)  and (not c1541_iec_atn_o) ); --or (ext_iec_atn_i  );
+c64_iec_data_i <= not ((not c64_iec_data_o) and (not c1541_iec_data_o)); --or (ext_iec_data_i );
+c64_iec_clk_i  <= not ((not c64_iec_clk_o)  and (not c1541_iec_clk_o) ); --or (ext_iec_clk_i  );
 	
 c1541_iec_atn_i  <= c64_iec_atn_i;
 c1541_iec_data_i <= c64_iec_data_i;
 c1541_iec_clk_i  <= c64_iec_clk_i;
 
 -- external IEC commented
-ext_iec_atn_o  <= c64_iec_atn_o   or c1541_iec_atn_o;
-ext_iec_data_o <= c64_iec_data_o  or c1541_iec_data_o;
-ext_iec_clk_o  <= c64_iec_clk_o   or c1541_iec_clk_o;
+--ext_iec_atn_o  <= c64_iec_atn_o   or c1541_iec_atn_o;
+--ext_iec_data_o <= c64_iec_data_o  or c1541_iec_data_o;
+--ext_iec_clk_o  <= c64_iec_clk_o   or c1541_iec_clk_o;
 	
 -- c1541 sd emulator
 c1541_sd : entity work.c1541_sd
@@ -627,6 +606,7 @@ vga_r <= std_logic_vector(osd_r(7 downto 0));-- when blank = '0' else (others =>
 vga_g <= std_logic_vector(osd_g(7 downto 0));-- when blank = '0' else (others => '0');
 vga_b <= std_logic_vector(osd_b(7 downto 0));-- when blank = '0' else (others => '0');
 
+
 comp_sync : entity work.composite_sync
 port map(
 	clk32 => clk32,
@@ -642,60 +622,52 @@ vga_hs <= csync when tv15Khz_mode = '1' else hsync;
 vga_vs <= '1'   when tv15Khz_mode = '1' else vsync;
 
 -- pwm  sound	
-process(clk18)
-	variable count_l  : std_logic_vector(4 downto 0) := (others => '0');
-	variable count_r  : std_logic_vector(4 downto 0) := (others => '0');
-begin
-	if rising_edge(clk32) then
-		if count_l = "01000" then
-			count_l := (others => '0');
-			pwm_accumulator_l  <=  ('0' & pwm_accumulator_l(7 downto 0)) + 
-										("00"&audio_data_l(17 downto 12));
-		else
-			count_l := count_l + '1';
-		end if;
-		if count_r = "01000" then
-			count_r := (others => '0');
-			pwm_accumulator_r  <=  ('0' & pwm_accumulator_r(7 downto 0)) + 
-										("00"&audio_data_r(17 downto 12));
-		else
-			count_r := count_r + '1';
-		end if;
-	end if;
-end process;
-	
-pwm_audio_out_l <= pwm_accumulator_l(8);
-pwm_audio_out_r <= pwm_accumulator_r(8);
+--process(clk18)
+--	variable count  : std_logic_vector(4 downto 0) := (others => '0');
+--begin
+--	if rising_edge(clk18) then
+--		if count = "01000" then
+--			count := (others => '0');
+--			pwm_accumulator  <=  ('0' & pwm_accumulator(7 downto 0)) + 
+--										("00"&audio_data(17 downto 12));
+--		else
+--			count := count + '1';
+--		end if;
+--	end if;
+--end process;
+--	
+--pwm_audio_out_l <= pwm_accumulator(8);
+--pwm_audio_out_r <= pwm_accumulator(8);
 
 -- audio for sgtl5000 
---sample_data <= audio_data_l(17 downto 2) & audio_data_r(17 downto 2);
---
----- sgtl5000 (teensy audio shield on top of usb host shield)
---e_sgtl5000 : entity work.sgtl5000_dac
---port map(
--- clock_18   => clk18,
--- reset      => reset,
--- i2c_clock  => clk01,  
---
--- sample_data  => sample_data,
--- 
--- i2c_sda   => arduino_io(0), -- i2c_sda, 
--- i2c_scl   => arduino_io(1), -- i2c_scl, 
---
--- tx_data   => arduino_io(2), -- sgtl5000 tx
--- mclk      => arduino_io(4), -- sgtl5000 mclk 
--- 
--- lrclk     => arduino_io(3), -- sgtl5000 lrclk
--- bclk      => arduino_io(6), -- sgtl5000 bclk   
--- 
--- -- debug
----- hex0_di   => open, -- hex0_di,
----- hex1_di   => open, -- hex1_di,
----- hex2_di   => open, -- hex2_di,
----- hex3_di   => open, -- hex3_di,
--- 
--- sw => (others => '0') --sw(7 downto 0)
---);
+sample_data <= audio_data_l(17 downto 2) & audio_data_r(17 downto 2);
+
+-- sgtl5000 (teensy audio shield on top of usb host shield)
+e_sgtl5000 : entity work.sgtl5000_dac
+port map(
+ clock_18   => clk18,
+ reset      => reset,
+ i2c_clock  => clk01,  
+
+ sample_data  => sample_data,
+ 
+ i2c_sda   => arduino_io(0), -- i2c_sda, 
+ i2c_scl   => arduino_io(1), -- i2c_scl, 
+
+ tx_data   => arduino_io(2), -- sgtl5000 tx
+ mclk      => arduino_io(4), -- sgtl5000 mclk 
+ 
+ lrclk     => arduino_io(3), -- sgtl5000 lrclk
+ bclk      => arduino_io(6), -- sgtl5000 bclk   
+ 
+ -- debug
+ hex0_di   => open, -- hex0_di,
+ hex1_di   => open, -- hex1_di,
+ hex2_di   => open, -- hex2_di,
+ hex3_di   => open, -- hex3_di,
+ 
+ sw => (others => '0') --sw(7 downto 0)
+);
 
  -- usb host for max3421e arduino modified shield
 usb_host : entity work.usb_host_max3421e
@@ -853,8 +825,42 @@ port map(
 );
 
 
--- tap_counter <= tap_counter_up when dipswitches(6)='0' else tap_counter_down;		
-
-
+-- debug/diplay
+--ledr(3 downto 0) <= sd_spi_available & usb_spi_available & sd_spi_cs_n & usb_spi_cs_n;
+--ledr(6) <= not c1530_motor;
+--ledr(7) <= c1530_write;
+--ledr(8) <= tap_control(1); -- tap version detected
+--ledr(9) <= tap_fifo_error;
+--
+--hsl : entity work.decodeur_7_seg port map(dbg_read_sector(3 downto 0),hex_sector_lsb);
+--hsm : entity work.decodeur_7_seg port map("000"&dbg_read_sector(4),hex_sector_msb);
+--
+--hex_d0(7) <= not dbg_sd_busy;
+--hex_d0(6 downto 0) <= hex_sector_lsb(6 downto 0) when dbg_act = '1' else (others => '1');
+--hex_d1(7) <= '1';
+--hex_d1(6 downto 0) <= hex_sector_msb(6 downto 0) when dbg_act = '1' else (others => '1');
+--
+--hd2 : entity work.decodeur_7_seg port map(dbg_track_dbl(4 downto 1),hex_d2);
+--hd3 : entity work.decodeur_7_seg port map("00"&dbg_track_dbl(6 downto 5),hex_d3);
+----hd4 : entity work.decodeur_7_seg port map(disk_num(3 downto 0),hex_d4);
+----hd5 : entity work.decodeur_7_seg port map(disk_num(7 downto 4),hex_d5);
+--hex_d4 <= (others=>'1');
+--hex_d5 <= (others=>'1');
+--
+--tap_counter <= tap_counter_up when dipswitches(6)='0' else tap_counter_down;		
+--
+--ht0 : entity work.decodeur_7_seg port map(tap_counter(11 downto  8),hex_t0);
+--ht1 : entity work.decodeur_7_seg port map(tap_counter(15 downto 12),hex_t1);
+--ht2 : entity work.decodeur_7_seg port map(tap_counter(19 downto 16),hex_t2);
+--ht3 : entity work.decodeur_7_seg port map(tap_counter(23 downto 20),hex_t3);
+--ht4 : entity work.decodeur_7_seg port map(tap_counter(27 downto 24),hex_t4);
+--ht5 : entity work.decodeur_7_seg port map(tap_counter(31 downto 28),hex_t5);
+--
+--hex0 <= hex_t0 when dipswitches(7) = '0' else hex_d0;
+--hex1 <= hex_t1 when dipswitches(7) = '0' else hex_d1;
+--hex2 <= hex_t2 when dipswitches(7) = '0' else hex_d2;
+--hex3 <= hex_t3 when dipswitches(7) = '0' else hex_d3;
+--hex4 <= hex_t4 when dipswitches(7) = '0' else hex_d4;
+--hex5 <= hex_t5 when dipswitches(7) = '0' else hex_d5;
 
 end struct;

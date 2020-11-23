@@ -80,7 +80,6 @@ entity fpga64_sid_iec is
 		idle        : out std_logic;
 
 		-- VGA/SCART interface
-		tv15Khz_mode : in std_logic;
 		ntscInitMode: in  std_logic;
 		hsync       : out std_logic;
 		vsync       : out std_logic;
@@ -287,10 +286,6 @@ architecture rtl of fpga64_sid_iec is
 	signal trace2Key : std_logic;
 
 	-- video
-	signal cyclesPerLine : unsigned(11 downto 0);
-	signal scanConverterFaster : std_logic;
-	signal ColorIndex : unsigned(3 downto 0);
-	
 	signal vicColorIndex : unsigned(3 downto 0);
 	signal vicHSync : std_logic;
 	signal vicVSync : std_logic;
@@ -443,63 +438,16 @@ begin
 		end if;
 	end process;
 
-	-- -----------------------------------------------------------------------
--- Scan-converter and VGA output
--- -----------------------------------------------------------------------
-	myScanConverter: entity work.fpga64_cone_scanconverter
-		generic map (
-			videoWidth => 4
-		)
-		port map (
-			clk => clk32,
-			cyclesPerLine => cyclesPerLine,
-			faster => scanConverterFaster,
-			hSyncPolarity => '0',
-			vSyncPolarity => '0',
-			enable_in => enablePixel,
-			video_in => vicColorIndex,
-			hsync_in => vicHSync,
-			vsync_in => vicVSync,
-			video_out => vgaColorIndex,
-			hsync_out => vgaHSync,
-			vsync_out => vgaVSync
-		);
-	
-	cyclesPerLine <= to_unsigned(1080, 12) when ntscMode = '0' else to_unsigned(1088,12);
-	scanConverterFaster <= not ntscMode;
-	
-	ColorIndex <= vicColorIndex when tv15Khz_mode = '1' else vgaColorIndex;
+	hSync <= vicHSync;
+	vSync <= vicVSync;
 
 	c64colors: entity work.fpga64_rgbcolor
 		port map (
-			index => ColorIndex,
-			r => vgaR,
-			g => vgaG,
-			b => vgaB
+			index => vicColorIndex,
+			r => r,
+			g => g,
+			b => b
 		);
-
-	process(clk32)
-	begin
-		if rising_edge(clk32) then
-			r <= vgaR;
-			g <= vgaG;
-			b <= vgaB;
---			if videoConfigShow = '1' and videoConfigDim = '1' then
---			if videoConfigDim = '1' then
---				r <= videoConfigVideo & vgaR(7 downto 1);
---				g <= videoConfigVideo & vgaG(7 downto 1);
---				b <= videoConfigVideo & vgaB(7 downto 1);
---			end if;
---			if vgaDebugDim = '1' then
---				r <= vgaDebug & vgaR(7 downto 1);
---				g <= vgaDebug & vgaG(7 downto 1);
---				b <= vgaDebug & vgaB(7 downto 1);
---			end if;				
-		end if;
-	end process;
-
-	hSync <= not vicHSync when tv15Khz_mode = '1' else vgaHSync;
-	vSync <= not vicVSync when tv15Khz_mode = '1' else vgaVSync;
 -- -----------------------------------------------------------------------
 -- Color RAM
 -- -----------------------------------------------------------------------

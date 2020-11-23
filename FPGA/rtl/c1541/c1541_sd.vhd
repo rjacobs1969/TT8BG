@@ -125,8 +125,8 @@ begin
 	
   c1541 : entity work.c1541_logic
   generic map
-  ( -- RJ WAS 00
-    DEVICE_SELECT => "01"
+  (
+    DEVICE_SELECT => "00"
   )
   port map
   (
@@ -143,7 +143,7 @@ begin
     sb_atn_in  => not iec_atn_i,
     
     -- drive-side interface
-    ds              => "01",     -- device select RJ WAS 0
+    ds              => "00",     -- device select
     di              => c1541_logic_din,  -- data read 
     do              => c1541_logic_dout, -- data to write
     mode            => mode,     -- read/write
