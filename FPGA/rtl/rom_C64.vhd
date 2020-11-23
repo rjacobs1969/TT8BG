@@ -67,6 +67,7 @@ BEGIN
 		clock_enable_input_b => "BYPASS",
 		clock_enable_output_b => "BYPASS",
 		init_file => "roms/std_C64.mif",
+		-- init_file => "roms/TT8BG.hex",
 		intended_device_family => "Cyclone III",
 		lpm_type => "altsyncram",
 		numwords_a => 16384,

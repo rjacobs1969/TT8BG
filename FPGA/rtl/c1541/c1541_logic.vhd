@@ -263,7 +263,8 @@ begin
 --	 init_file   => "../roms/25196802.hex",             
 --	 init_file   => "../roms/25196801.hex",             
 --    INIT_FILE   => "../rtl/roms/std_C1541.mif",    
-      init_file   => "../rtl/roms/325302-1_901229-03.hex",   
+     -- init_file   => "../rtl/roms/325302-1_901229-03.hex",  
+	init_file   => "../rtl/roms/F1541.hex", 	
 --    init_file   => "../roms/1541_c000_01_and_e000_06aa.hex",   -- DAR tested OK
 
 
