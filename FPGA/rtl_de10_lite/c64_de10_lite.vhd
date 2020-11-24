@@ -128,7 +128,10 @@ port(
  arduino_io      : inout std_logic_vector(15 downto 0); 
 -- arduino_reset_n : inout std_logic;
  
- gpio          : inout std_logic_vector(35 downto 0)
+ gpio          : inout std_logic_vector(35 downto 0);
+ 
+ joyA_c64				: in std_logic_vector(6 downto 0);
+ joyB_c64				: in std_logic_vector(6 downto 0)
 
 );
 end c64_de10_lite;
@@ -242,6 +245,7 @@ architecture struct of c64_de10_lite is
 	-- (used for ctrl module input - single key at a time only)
 	signal kbd_int : std_logic;
 	signal kbd_scancode : std_logic_vector(7 downto 0);
+
 	
 	-- for sgt5000 audio
 	signal sample_data  : std_logic_vector(31 downto 0);
@@ -435,8 +439,10 @@ fpga64 : entity work.fpga64_sid_iec
 		IOE => open, --IOE,									
 		IOF => open, --IOF,
 		ba => open,
-		joyA => (others => '0'),   --unsigned(joyA_c64),
-		joyB => (others => '0'),   --unsigned(joyB_c64),
+		joyA => unsigned(not joyA_c64),
+		joyB => unsigned(not joyB_c64),		
+		--joyA => (others => '0'),   --unsigned(joyA_c64),
+		--joyB => (others => '0'),   --unsigned(joyB_c64),
 		potA_x => (others => '0'), --potA_x,
 		potA_y => (others => '0'), --potA_y,
 		potB_x => (others => '0'), --potB_x,
