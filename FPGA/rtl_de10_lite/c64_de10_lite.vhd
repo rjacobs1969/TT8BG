@@ -130,6 +130,9 @@ port(
  
  gpio          : inout std_logic_vector(35 downto 0);
  
+ ds : in std_logic_vector(1 downto 0);
+ 
+-- real Atari/Commodore joystick port 
  joyA_c64				: in std_logic_vector(6 downto 0);
  joyB_c64				: in std_logic_vector(6 downto 0)
 
@@ -167,6 +170,7 @@ architecture struct of c64_de10_lite is
 --	alias sram_we_n : std_logic is gpio(22);
 --	alias sram_oe_n : std_logic is gpio(23);
 --	alias sram_dq   : std_logic_vector is gpio(31 downto 24);
+
 --
 --	alias ext_iec_atn_i  : std_logic is gpio(32);
 --	alias ext_iec_clk_o  : std_logic is gpio(33);
@@ -517,6 +521,8 @@ port map
 	iec_atn_o  => c1541_iec_atn_o,
 	iec_data_o => c1541_iec_data_o,
 	iec_clk_o  => c1541_iec_clk_o,
+	
+	driveSelect => ds,
 	
 --	sd_miso  => sd_spi_miso, 
 --	sd_cs_n  => sd_spi_cs_n, 

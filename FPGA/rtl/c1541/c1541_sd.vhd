@@ -50,6 +50,8 @@ port(
 	iec_data_o : out std_logic;
 	iec_clk_o  : out std_logic;
 	
+	driveSelect : in std_logic_vector(1 downto 0);
+	
 --	sd_miso  : in std_logic;
 --	sd_cs_n  : buffer std_logic;
 --	sd_mosi  : buffer std_logic;
@@ -143,7 +145,7 @@ begin
     sb_atn_in  => not iec_atn_i,
     
     -- drive-side interface
-    ds              => "00",     -- device select
+    ds              => driveSelect, --"01",     -- device select
     di              => c1541_logic_din,  -- data read 
     do              => c1541_logic_dout, -- data to write
     mode            => mode,     -- read/write
