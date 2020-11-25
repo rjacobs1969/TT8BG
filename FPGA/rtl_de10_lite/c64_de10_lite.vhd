@@ -171,13 +171,13 @@ architecture struct of c64_de10_lite is
 --	alias sram_oe_n : std_logic is gpio(23);
 --	alias sram_dq   : std_logic_vector is gpio(31 downto 24);
 
---
---	alias ext_iec_atn_i  : std_logic is gpio(32);
---	alias ext_iec_clk_o  : std_logic is gpio(33);
---	alias ext_iec_data_o : std_logic is gpio(34);
---	alias ext_iec_atn_o  : std_logic is gpio(35);
---	alias ext_iec_data_i : std_logic is gpio(2);
---	alias ext_iec_clk_i  : std_logic is gpio(0);
+
+	alias ext_iec_atn_i  : std_logic is gpio(32);
+	alias ext_iec_clk_o  : std_logic is gpio(33);
+	alias ext_iec_data_o : std_logic is gpio(34);
+	alias ext_iec_atn_o  : std_logic is gpio(35);
+	alias ext_iec_data_i : std_logic is gpio(2);
+	alias ext_iec_clk_i  : std_logic is gpio(0);
 	
 	signal c64_iec_atn_i  : std_logic;
 	signal c64_iec_clk_o  : std_logic;
@@ -490,18 +490,23 @@ fpga64 : entity work.fpga64_sid_iec
 
 
 -- iec wiring (external IEC commented)
-c64_iec_atn_i  <= not ((not c64_iec_atn_o)  and (not c1541_iec_atn_o) ); --or (ext_iec_atn_i  );
-c64_iec_data_i <= not ((not c64_iec_data_o) and (not c1541_iec_data_o)); --or (ext_iec_data_i );
-c64_iec_clk_i  <= not ((not c64_iec_clk_o)  and (not c1541_iec_clk_o) ); --or (ext_iec_clk_i  );
+--c64_iec_atn_i  <= not ((not c64_iec_atn_o)  and (not c1541_iec_atn_o) ); --or (ext_iec_atn_i  );
+--c64_iec_data_i <= not ((not c64_iec_data_o) and (not c1541_iec_data_o)); --or (ext_iec_data_i );
+--c64_iec_clk_i  <= not ((not c64_iec_clk_o)  and (not c1541_iec_clk_o) ); --or (ext_iec_clk_i  );
+
+-- iec wiring (external IEC commented) RJ Changed logic	
+c64_iec_atn_i  <= not ((not c64_iec_atn_o)  and (not c1541_iec_atn_o ) and (ext_iec_atn_i  ));	
+c64_iec_data_i <= not ((not c64_iec_data_o) and (not c1541_iec_data_o) and (ext_iec_data_i ));	
+c64_iec_clk_i  <= not ((not c64_iec_clk_o)  and (not c1541_iec_clk_o ) and (ext_iec_clk_i  ));
 	
 c1541_iec_atn_i  <= c64_iec_atn_i;
 c1541_iec_data_i <= c64_iec_data_i;
 c1541_iec_clk_i  <= c64_iec_clk_i;
 
 -- external IEC commented
---ext_iec_atn_o  <= c64_iec_atn_o   or c1541_iec_atn_o;
---ext_iec_data_o <= c64_iec_data_o  or c1541_iec_data_o;
---ext_iec_clk_o  <= c64_iec_clk_o   or c1541_iec_clk_o;
+ext_iec_atn_o  <= c64_iec_atn_o   or c1541_iec_atn_o;
+ext_iec_data_o <= c64_iec_data_o  or c1541_iec_data_o;
+ext_iec_clk_o  <= c64_iec_clk_o   or c1541_iec_clk_o;
 	
 -- c1541 sd emulator
 c1541_sd : entity work.c1541_sd
