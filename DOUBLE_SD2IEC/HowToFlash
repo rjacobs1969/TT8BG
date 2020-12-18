@@ -1,0 +1,9 @@
+I use a USBasp to flash the Atmel 1284 controler, If you use another programmer you must change the "-c USBasp" accordingly   
+
+avrdude.exe -p m1284 -c USBasp -U hfuse:w:0x9A:m
+avrdude.exe -p m1284 -c USBasp -U lfuse:w:0xE0:m
+avrdude.exe -p m1284 -c USBasp -U lfuse:w:0xFD:m
+avrdude.exe -p m1284 -c USBasp -U flash:w:newboot-0.4.1-sw2-m1284p.hex:i
+
+copy sd2iec-1.0.0atentdead0-24-ga9a09fa-sw2-m1284p.bin to root of fat formated SD card, insert in SD2IEC and power on.
+(led flashing rapidly indicate firmware flashing)
